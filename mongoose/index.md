@@ -47,7 +47,7 @@ const schemaOptions = {
   collation: null, // 
   skipVersioning: // 
   timestamps: { timestamps: { createdAt: 'created_at' } }, // 可以通过设定 timestamps.createdAt 和 timestamps.updatedAt 自定义字段名称。
-  useNestedStrict: 'false', // 
+  useNestedStrict: false, // 
 }
 
 const Schema = mongoose.Schema
