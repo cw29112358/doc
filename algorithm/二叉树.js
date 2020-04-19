@@ -2,51 +2,51 @@
  * 二叉树的栗子
  */
 const treenode = {
-  value: 'A',
+  value: 1,
   left: {
-    value: 'B',
+    value: 2,
     left: {
-      value: 'D',
+      value: 4,
     },
     right: {
-      value: 'E',
+      value: 5,
       left: {
-        value: 'G',
+        value: 7,
       },
       right: {
-        value: 'H',
+        value: 8,
       },
     },
   },
   right: {
-    value: 'C',
+    value: 3,
     right: {
-      value: 'F',
+      value: 6,
     },
   },
 }
 
 const treenodeB = {
-  value: 'A',
+  value: 1,
   left: {
-    value: 'C',
+    value: 3,
     left: {
-      value: 'F',
+      value: 6,
     },
   },
   right: {
-    value: 'B',
+    value: 2,
     left: {
-      value: 'E',
+      value: 5,
       left: {
-        value: 'H',
+        value: 8,
       },
       right: {
-        value: 'G',
+        value: 7,
       },
     },
     right: {
-      value: 'D',
+      value: 4,
     },
   },
 }
@@ -115,7 +115,7 @@ const postorderTraversal = (root) => {
 /**
  * 二叉树层次遍历
  */
-const levelOrderTraversal = (root) => {
+const levelorderTraversal = (root) => {
   let nodestack = []
   const res = []
   if (!root) return []
@@ -123,12 +123,13 @@ const levelOrderTraversal = (root) => {
   while (nodestack.length > 0) {
     const newNodestack = []
     for (let i = 0; i < nodestack.length; i++) {
-      res.push(nodestack[i].value)
-      if (nodestack[i].left) {
-        newNodestack.push(nodestack[i].left)
+      const node = nodestack[i]
+      res.push(node.value)
+      if (node.left) {
+        newNodestack.push(node.left)
       }
-      if (nodestack[i].right) {
-        newNodestack.push(nodestack[i].right)
+      if (node.right) {
+        newNodestack.push(node.right)
       }
     }
     nodestack = newNodestack
