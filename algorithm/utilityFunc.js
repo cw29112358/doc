@@ -1,27 +1,27 @@
 /**
  * 节流函数
  */
-const throttle = (cb, time) => {
-  let canrun = true
-  return () => {
-    if (!canrun) return null
-    canrun = false
+function throttle(fn, time) {
+  var canRun = true;
+  return function () {
+    if (!canRun) return;
+    canRun = false;
     setTimeout(() => {
-      cb()
-      canrun = true
-    }, time || 1000)
-  }
+      canRun = true;
+      fn();
+    }, time || 2000);
+  };
 }
 
 /**
  * 防抖函数
  */
-const debounce = (cb, time) => {
-  let timer
-  return () => {
-    clearTimeout(timer)
+function debounce(cb, time) {
+  var timer;
+  return function () {
+    clearTimeout(timer);
     timer = setTimeout(() => {
       cb();
-    }, time || 1000);
-  }
+    }, time || 2000);
+  };
 }

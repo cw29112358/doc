@@ -24,7 +24,7 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error.'))
 db.once('open', () => console.log(`connected at ${url}`))
 
-### 定义mongoose
+### Schema 定义 document 结构
 
 const schemaOptions = {
   autoIndex: null,
@@ -110,5 +110,7 @@ const exampleSchema = new Schema(
   },
   schemaOptions,
 )
+
+### 定义 Model
 
 const examples = mongoose.model('example', exampleSchema)

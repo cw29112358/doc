@@ -54,87 +54,146 @@ const treenodeB = {
 /**
  * 二叉树前序遍历
  */
-const preorderTraversal = (root) => {
-  const nodestack = []
-  const res = []
-  nodestack.push(root)
-  if (!root) return []
-  while (nodestack.length > 0) {
-    let node = nodestack.pop()
-    res.push(node.value)
-    if (node.right) {
-      nodestack.push(node.right)
-    }
-    if (node.left) {
-      nodestack.push(node.left)
+// 递归实现
+function preOrderTraversal(root) {
+  var result = [];
+  function preOrderTraversalNode(node) {
+    if (node) {
+      result.push(node.value);
+      if (node.left) {
+        preOrderTraversalNode(node.left);
+      }
+      if (node.right) {
+        preOrderTraversalNode(node.right);
+      }
     }
   }
-  return res
+  preOrderTraversalNode(root);
+  return result;
+}
+
+// 迭代实现
+function preOrderTraversal(root) {
+  const list = [];
+  const stack = [];
+  if (root) {
+    stack.push(root);
+  }
+  while (stack.length > 0) {
+    const curNode = stack.pop();
+    list.push(curNode.value);
+    if (curNode.right) {
+      stack.push(curNode.right);
+    }
+    if (curNode.left) {
+      stack.push(curNode.left);
+    }
+  }
+  return list;
 }
 
 /**
  * 二叉树中序遍历
  */
-const inorderTraversal = (root) => {
-  const nodestack = []
-  const res = []
-  if (!root) return []
-  while (!!root || nodestack.length > 0) {
-    while (!!root) {
-      nodestack.push(root)
-      root = root.left
+// 递归实现
+function inorderTraversal(root) {
+  var result = [];
+  function inOrderTraversalNode(node) {
+    if (node) {
+      if (node.left) {
+        inOrderTraversalNode(node.left);
+      }
+      result.push(node.value);
+      if (node.right) {
+        inOrderTraversalNode(node.right);
+      }
     }
-    root = nodestack.pop()
-    res.push(root.value)
-    root = root.right
   }
-  return res
+  inOrderTraversalNode(root);
+  return result;
+}
+
+// 迭代实现
+function inorderTraversal(root) {
+  const list = [];
+  const stack = [];
+  while (root || stack.length > 0) {
+    while (root) {
+      stack.push(root);
+      root = root.left;
+    }
+    root = stack.pop();
+    list.push(root.value);
+    root = root.right;
+  }
+  return list;
 }
 
 /**
  * 二叉树后序遍历
  */
-const postorderTraversal = (root) => {
-  const nodestack = []
-  const res = []
-  nodestack.push(root)
-  if (!root) return []
-  while (nodestack.length > 0) {
-    const node = nodestack.pop()
-    res.unshift(node.value)
-    if (node.left) {
-      nodestack.push(node.left)
-    }
-    if (node.right) {
-      nodestack.push(node.right)
+// 递归实现
+function postorderTraversal(root) {
+  var result = [];
+  function postorderTraversalNode(node) {
+    if (node) {
+      if (node.left) {
+        postorderTraversalNode(node.left);
+      }
+      if (node.right) {
+        postorderTraversalNode(node.right);
+      }
+      result.push(node.value);
     }
   }
-  return res
+  postorderTraversalNode(root);
+  return result;
+}
+
+// 迭代实现
+function postorderTraversal(root) {
+  const list = [];
+  const stack = [];
+  if (root) {
+    stack.push(root);
+  }
+  while (stack.length > 0) {
+    const curNode = stack.pop();
+    list.unshift(curNode.value);
+    if (curNode.left) {
+      stack.push(curNode.left);
+    }
+    if (curNode.right) {
+      stack.push(curNode.right);
+    }
+  }
+  return list;
 }
 
 /**
  * 二叉树层次遍历
  */
-const levelorderTraversal = (root) => {
-  let nodestack = []
-  const res = []
-  if (!root) return []
-  nodestack.push(root)
-  while (nodestack.length > 0) {
-    const newNodestack = []
-    for (let i = 0; i < nodestack.length; i++) {
-      const node = nodestack[i]
-      res.push(node.value)
-      if (node.left) {
-        newNodestack.push(node.left)
+function levelorderTraversal(root) {
+  const list = [];
+  let stack = [];
+  if (root) {
+    stack.push(root);
+  }
+  while (stack.length > 0) {
+    const newStack = [];
+    for (let i = 0; i < stack.length; i++) {
+      const curNode = stack[i];
+      list.push(curNode.value);
+      if (curNode.left) {
+        newStack.push(curNode.left);
       }
-      if (node.right) {
-        newNodestack.push(node.right)
+      if (curNode.right) {
+        newStack.push(curNode.right);
       }
     }
-    nodestack = newNodestack
+    stack = newStack;
   }
-  return res
+  return list;
 }
 
 /**
