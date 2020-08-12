@@ -1,14 +1,14 @@
 /**
  * 节流函数
  */
-function throttle(fn, time) {
+function throttle(cb, time) {
   var canRun = true;
   return function () {
     if (!canRun) return;
     canRun = false;
     setTimeout(() => {
       canRun = true;
-      fn();
+      cb();
     }, time || 2000);
   };
 }
