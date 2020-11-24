@@ -56,40 +56,40 @@ const treenodeB = {
  */
 // 递归实现
 function preOrderTraversal(root) {
-  var result = [];
+  const result = []
   function preOrderTraversalNode(node) {
     if (node) {
-      result.push(node.value);
+      result.push(node.value)
       if (node.left) {
-        preOrderTraversalNode(node.left);
+        preOrderTraversalNode(node.left)
       }
       if (node.right) {
-        preOrderTraversalNode(node.right);
+        preOrderTraversalNode(node.right)
       }
     }
   }
-  preOrderTraversalNode(root);
-  return result;
+  preOrderTraversalNode(root)
+  return result
 }
 
 // 迭代实现
 function preOrderTraversal(root) {
-  const list = [];
-  const stack = [];
+  const list = []
+  const stack = []
   if (root) {
-    stack.push(root);
+    stack.push(root)
   }
   while (stack.length > 0) {
-    const curNode = stack.pop();
-    list.push(curNode.value);
+    const curNode = stack.pop()
+    list.push(curNode.value)
     if (curNode.right) {
-      stack.push(curNode.right);
+      stack.push(curNode.right)
     }
     if (curNode.left) {
-      stack.push(curNode.left);
+      stack.push(curNode.left)
     }
   }
-  return list;
+  return list
 }
 
 /**
@@ -97,36 +97,36 @@ function preOrderTraversal(root) {
  */
 // 递归实现
 function inorderTraversal(root) {
-  var result = [];
+  const result = []
   function inOrderTraversalNode(node) {
     if (node) {
       if (node.left) {
-        inOrderTraversalNode(node.left);
+        inOrderTraversalNode(node.left)
       }
-      result.push(node.value);
+      result.push(node.value)
       if (node.right) {
-        inOrderTraversalNode(node.right);
+        inOrderTraversalNode(node.right)
       }
     }
   }
-  inOrderTraversalNode(root);
-  return result;
+  inOrderTraversalNode(root)
+  return result
 }
 
 // 迭代实现
 function inorderTraversal(root) {
-  const list = [];
-  const stack = [];
+  const list = []
+  const stack = []
   while (root || stack.length > 0) {
     while (root) {
-      stack.push(root);
-      root = root.left;
+      stack.push(root)
+      root = root.left
     }
-    root = stack.pop();
-    list.push(root.value);
-    root = root.right;
+    root = stack.pop()
+    list.push(root.value)
+    root = root.right
   }
-  return list;
+  return list
 }
 
 /**
@@ -134,66 +134,66 @@ function inorderTraversal(root) {
  */
 // 递归实现
 function postorderTraversal(root) {
-  var result = [];
+  const result = []
   function postorderTraversalNode(node) {
     if (node) {
       if (node.left) {
-        postorderTraversalNode(node.left);
+        postorderTraversalNode(node.left)
       }
       if (node.right) {
-        postorderTraversalNode(node.right);
+        postorderTraversalNode(node.right)
       }
-      result.push(node.value);
+      result.push(node.value)
     }
   }
-  postorderTraversalNode(root);
-  return result;
+  postorderTraversalNode(root)
+  return result
 }
 
 // 迭代实现
 function postorderTraversal(root) {
-  const list = [];
-  const stack = [];
+  const list = []
+  const stack = []
   if (root) {
-    stack.push(root);
+    stack.push(root)
   }
   while (stack.length > 0) {
-    const curNode = stack.pop();
-    list.unshift(curNode.value);
+    const curNode = stack.pop()
+    list.unshift(curNode.value)
     if (curNode.left) {
-      stack.push(curNode.left);
+      stack.push(curNode.left)
     }
     if (curNode.right) {
-      stack.push(curNode.right);
+      stack.push(curNode.right)
     }
   }
-  return list;
+  return list
 }
 
 /**
  * 二叉树层次遍历
  */
 function levelorderTraversal(root) {
-  const list = [];
-  let stack = [];
+  const list = []
+  let stack = []
   if (root) {
-    stack.push(root);
+    stack.push(root)
   }
   while (stack.length > 0) {
-    const newStack = [];
+    const newStack = []
     for (let i = 0; i < stack.length; i++) {
-      const curNode = stack[i];
-      list.push(curNode.value);
+      const curNode = stack[i]
+      list.push(curNode.value)
       if (curNode.left) {
-        newStack.push(curNode.left);
+        newStack.push(curNode.left)
       }
       if (curNode.right) {
-        newStack.push(curNode.right);
+        newStack.push(curNode.right)
       }
     }
-    stack = newStack;
+    stack = newStack
   }
-  return list;
+  return list
 }
 
 /**
@@ -209,5 +209,25 @@ const isSymmetrical = (treenodeA, treenodeB) => {
   if (treenodeA.value !== treenodeB.value) {
     return false
   }
-  return isSymmetrical(treenodeA.left, treenodeB.right) && isSymmetrical(treenodeA.right, treenodeB.left)
+  return (
+    isSymmetrical(treenodeA.left, treenodeB.right) &&
+    isSymmetrical(treenodeA.right, treenodeB.left)
+  )
+}
+
+/**
+ * 二叉树路径总和
+ * 给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和
+ */
+function hasPathSum(root, sum) {
+  if (!root) {
+    return false
+  }
+  if (!root.left && !root.right) {
+    return root.value === sum
+  }
+  return (
+    hasPathSum(root.left, sum - root.value) ||
+    hasPathSum(root.right, sum - root.value)
+  )
 }
