@@ -38,14 +38,6 @@ function _new() {
   return obj
 }
 
-// 实现 class
-function Class(x) {
-  this.x = x
-}
-Class.prototype.say = function() {
-  return this.x
-}
-
 // 节流函数
 function throttle(cb, time) {
   let canRun = true
@@ -276,7 +268,7 @@ class MyPromise {
   finally (cb) {
     return this.then(
       value  => MyPromise.resolve(cb()).then(() => value),
-      reason => MyPromise.resolve(cb()).then(() => { throw reason })
+      reason => MyPromise.reject(cb()).then(() => { throw reason })
     );
   }
 }

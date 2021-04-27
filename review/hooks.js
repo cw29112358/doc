@@ -29,7 +29,7 @@ let watchArr
 function useEffect(callback, watch) {
   if (!watch) callback()
   const hasWatchChanged = watchArr
-    ? watchArr.every((item, index) => item !== watch[index])
+    ? watchArr.some((item, index) => item !== watch[index])
     : true
   if (hasWatchChanged) {
     callback()

@@ -24,7 +24,7 @@ function limitLoad(urls, handler, limit, callback) {
     promises = sequence.splice(0, limit).map((url, index) =>
       handler(url).then(() => {
         count--
-        if (count === 0) callback()
+        if (count === 0) return callback()
         return index
       }),
     )
@@ -38,7 +38,7 @@ function limitLoad(urls, handler, limit, callback) {
         })
       }
     })()
-  }
+}
 
 /**
  * 全排列

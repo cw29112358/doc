@@ -1,4 +1,16 @@
 /**
+ * 对象浅拷贝
+ * data: object
+ */
+function extend(target = {}, data) {
+  if (!data) return data
+  for (key in data) {
+    target[key] = data[key]
+  }
+  return target
+}
+
+/**
  * 深拷贝简单版
  */
 const newObj = JSON.parse(JSON.stringify(obj))
