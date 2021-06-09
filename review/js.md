@@ -189,13 +189,16 @@ this === 'window' ? 'browser' : 'node'
 
 参考链接: https://www.haorooms.com/post/ajax_historybackprev
 
+history.pushState(state, title[, url])
+history.replaceState(stateObj, title[, url])
+
 ### 把 Script 标签放在页面的最底部的 body 封闭之前和封闭之后有什么区别？浏览器会如何解析它们？
 
 之前推荐的方法（已过时）：之前解决这个问题的方法是把 script 标签放到 body 标签之后 ，这确保了解析到</body>之前都不会被 script 终端。这个方法是有问题的: 浏览器在整个文档解析完成之前都不能下载 script 文件，如果文档很大的话，解析完 HTML，用户依然要等待 script 文件下载并执行完成之后，才能操作这个网站。
 
 现在推荐的解决方案：现在浏览器 script 标签支持 async 和 defer 属性. 应用这些属性当 script 被下载时，浏览器更安全而且可以并行下载（下载 script 并不阻断 HTML 解析）。1.async 标记的 Script 异步执行下载，并执行。这意味着 script 下载时并不阻塞 HTML 的解析，并且下载结束 script 马上执行。2.defer 标签的 script 顺序执行。这种方式也不会阻断浏览器解析 HTML。跟 async 不同, defer scripts 在整个文档里的 script 都被下载完才顺序执行。
 
-### 什么是前端路由？前端路由的 实现原理
+### 什么是前端路由？前端路由的实现原理
 
 参考链接: http://www.voidcn.com/article/p-fowvpjan-dx.html
 
